@@ -5,6 +5,7 @@ import characters_json from '../data/characters.json';
 // Import an action type constant and play with it in reducers
 import { ADD_CHARACTER } from '../actions';
 
+// Character reducer
 function characters(state = characters_json, action) {
     switch(action.type) {
         case ADD_CHARACTER:
@@ -14,6 +15,24 @@ function characters(state = characters_json, action) {
         default:
             return state;
     }
+}
+
+// Heroes reducer
+function heroes(state = [], action) {
+    switch(action.type) {
+        case ADD_CHARACTER:
+        let heroes = [...state, createCharacterById(action.id)]
+        return heroes;
+
+        default:
+            return state;
+    }
+}
+
+function createCharacterById(id) {
+    // Find a character from characters json
+    let character = characters_json.find(char => char.id === id);
+    return character;
 }
 
 export default characters;
