@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import characters_json from '../data/characters.json';
 // Reducer is actually a function which accepts
 // 2 params @state, @action
@@ -35,4 +36,9 @@ function createCharacterById(id) {
     return character;
 }
 
-export default characters;
+const rootReducer = combineReducers({
+    characters,
+    heroes
+});
+
+export default rootReducer;
