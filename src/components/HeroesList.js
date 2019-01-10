@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeCharacterById } from '../actions'
 
 class HeroesList extends Component {
     render() {
@@ -13,6 +14,12 @@ class HeroesList extends Component {
                                 <li className='list-group-item' key={hero.id}>
                                     <div className='list-item'>
                                        {hero.name} 
+                                    </div>
+                                    <div
+                                        className='list-item button-right'
+                                        onClick={() => this.props.removeCharacterById(hero.id)}
+                                    >
+                                        x
                                     </div>
                                 </li>
                             )
@@ -30,4 +37,4 @@ function mapDispatchToProps(state) {
     }
 }
 
-export default connect(mapDispatchToProps, null) (HeroesList);
+export default connect(mapDispatchToProps, {removeCharacterById}) (HeroesList);
