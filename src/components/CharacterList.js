@@ -5,18 +5,19 @@ import { addCharacterById } from '../actions';
 
 class CharacterList extends Component {
     render() {
-        console.log('this.props: ', this.props)
         return(
             <div>
-                <h4>Character List</h4>
-                <ul>
+                <h4>Characters</h4>
+                <ul className='list-group'>
                     {
                         this.props.characters.map(character => {
                             return(
-                                <li key={character.id}>
-                                    <div>{character.name}</div>
-                                    <div
-                                        onClick={ () => this.props.addCharacterById(character.id)}
+                                <li className='list-group-item' key={character.id}>
+                                    <div className='list-item'>
+                                    {character.name}
+                                    </div>
+                                    <div className='list-item button-right'
+                                        onClick={() => this.props.addCharacterById(character.id)}
                                     >
                                     +
                                     </div>
