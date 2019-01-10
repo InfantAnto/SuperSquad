@@ -39,9 +39,12 @@ function mapStateToProps(state) {
 
 // To use actions in component, bind all the action creators
 // Pass action creators as 1st param
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({addCharacterById}, dispatch)
-}
+
+// Comment this and directly pass action creators in connect
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({addCharacterById}, dispatch)
+// }
 
 // Use connect to connect the component to redux store(state)
-export default connect(mapStateToProps, mapDispatchToProps) (CharacterList);
+// To be simplified and save time we can directly pass action creators as 2nd param
+export default connect(mapStateToProps, {addCharacterById}) (CharacterList);
