@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addCharacterById } from '../actions';
 
 class CharacterList extends Component {
     render() {
@@ -13,6 +15,11 @@ class CharacterList extends Component {
                             return(
                                 <li key={character.id}>
                                     <div>{character.name}</div>
+                                    <div
+                                        onClick={ () => this.props.addCharacterById(character.id)}
+                                    >
+                                    +
+                                    </div>
                                 </li>
                             )
                         })
@@ -23,12 +30,18 @@ class CharacterList extends Component {
     }
 }
 
-// To use the redux's state in props
+// To use the redux's state in props - FUNCTION
 function mapStateToProps(state) {
     return {
         characters: state.characters
     }
 }
 
+// To use actions in component, bind all the action creators
+// Pass action creators as 1st param
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({addCharacterById}, dispatch)
+}
+
 // Use connect to connect the component to redux store(state)
-export default connect(mapStateToProps, null) (CharacterList);
+export default connect(mapStateToProps, mapDispatchToProps) (CharacterList);
